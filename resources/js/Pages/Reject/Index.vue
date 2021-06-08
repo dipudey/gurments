@@ -4,10 +4,13 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between mb-4">
-            <h4 class="card-title">All Delivery List</h4>
-            <a :href="$route('delivery.create')" class="btn btn-primary btn-sm">
-              Add New Delivery
-            </a>
+            <h4 class="card-title">All Reject Product List</h4>
+            <inertia-link
+              :href="$route('reject.create')"
+              class="btn btn-primary btn-sm"
+            >
+              Add New Reject Product
+            </inertia-link>
           </div>
 
           <DataTable

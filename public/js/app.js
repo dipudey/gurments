@@ -4258,6 +4258,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -34682,20 +34685,25 @@ var render = function() {
           "div",
           { staticClass: "card-body" },
           [
-            _c("div", { staticClass: "d-flex justify-content-between mb-4" }, [
-              _c("h4", { staticClass: "card-title" }, [
-                _vm._v("All Delivery List")
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary btn-sm",
-                  attrs: { href: _vm.$route("delivery.create") }
-                },
-                [_vm._v("\n            Add New Delivery\n          ")]
-              )
-            ]),
+            _c(
+              "div",
+              { staticClass: "d-flex justify-content-between mb-4" },
+              [
+                _c("h4", { staticClass: "card-title" }, [
+                  _vm._v("All Reject Product List")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "inertia-link",
+                  {
+                    staticClass: "btn btn-primary btn-sm",
+                    attrs: { href: _vm.$route("reject.create") }
+                  },
+                  [_vm._v("\n            Add New Reject Product\n          ")]
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
             _vm.allRejects
               ? _c(
