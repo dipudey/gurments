@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProductImport;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Excel;
 
 class ProductController extends Controller
 {
@@ -151,5 +153,36 @@ class ProductController extends Controller
             'items' => $products,
             'pagination' => ['more' => $product_count > 0]
         ]);
+    }
+
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            // 'csv' => 'mimes:csv'
+        ]);
+
+        $fix = [];
+
+        $arr = array_map('str_getcsv', file($request->csv->getPathName()));
+        $csv = collect($arr)->skip(1)
+            ->reduce(function ($arr, $row) {
+                $arr[] = [
+                    'inhouse_date' => $row[1],
+                    'style_ref' => $row[2],
+                    'color' => $row[3],
+                    'fabric_type' => $row[4],
+                    'pantone_number' => $row[5],
+                    'collection_ref' => $row[6],
+                    'supplier' => $row[7],
+                    'gsm_weight' => $row[8],
+                    'unit' => $row[9],
+                    'quantity_inhouse' => $row[10],
+                ];
+
+                return $arr;
+            }, []);
+        Product::query()->insert($csv);
+        return redirect()->route('product.index')->with('success', "product imported successfully");
     }
 }

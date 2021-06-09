@@ -39,10 +39,12 @@ export default {
                 }
             }),
         hasPermission(permission) {
-            return (
-                this.permissions.hasOwnProperty(permission) &&
-                this.permissions[permission]
-            );
+            return JSON.parse(this.$page.props.permission).includes(permission);
+        },
+        hasAnyPermission(permissions) {
+            return JSON.parse(this.$page.props.permission)
+                .filter(permission => permissions.includes(permission))
+                .length > 0;
         },
         paginatedSL(pagination, index) {
             return (

@@ -5,9 +5,22 @@
         <div class="card-body">
           <div class="d-flex justify-content-between mb-4">
             <h4 class="card-title">All Product List</h4>
-            <a :href="$route('product.create')" class="btn btn-primary btn-sm">
-              Add New Product
-            </a>
+
+            <div>
+              <a
+                :href="$route('product.create')"
+                class="btn btn-primary btn-sm"
+              >
+                Add New Product
+              </a>
+              <button
+                type="button"
+                @click="importProduct"
+                class="btn btn-success btn-sm"
+              >
+                Import Product
+              </button>
+            </div>
           </div>
 
           <DataTable
@@ -66,6 +79,51 @@
         </div>
       </div>
     </div>
+
+    <div
+      class="modal fade"
+      id="productModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Import Product Csv File `
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="store">
+              <div class="form-group">
+                <label for="">Csv File</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  @change="file"
+                  required
+                />
+                <span v-if="errors.csv">{{ errors.csv }}</span>
+              </div>
+
+              <div class="mt-4">
+                <button type="submit" class="btn btn-info">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -84,6 +142,7 @@ export default {
   },
   props: {
     products: Object,
+    errors: Object,
   },
   watch: {
     products: {
@@ -96,9 +155,21 @@ export default {
   data() {
     return {
       allProducts: {},
+      form: this.$inertia.form({
+        csv: "",
+      }),
     };
   },
   methods: {
+    store() {
+      this.form.post(this.$route("product.import"), {
+        onSuccess: this.close,
+      });
+    },
+    close() {
+      this.form.csv = "";
+      $("#productModal").modal("hide");
+    },
     destroy(id) {
       this.confirmDelete(() =>
         this.$inertia.delete(this.$route("product.destroy", id))
@@ -116,6 +187,13 @@ export default {
         .then((response) => {
           this.allProducts = response.data;
         });
+    },
+    importProduct() {
+      $("#productModal").modal("show");
+    },
+
+    file(e) {
+      this.form.csv = e.target.files[0];
     },
   },
 };

@@ -19,7 +19,8 @@
               <span key="t-dashboards">Dashboard</span>
             </inertia-link>
           </li>
-          <li>
+
+          <li v-if="hasAnyPermission(['productlist', 'productadd'])">
             <inertia-link
               href="#"
               class="has-arrow"
@@ -31,19 +32,19 @@
               <span key="t-layouts">Products</span>
             </inertia-link>
             <ul class="sub-menu" aria-expanded="false">
-              <li>
+              <li v-if="hasPermission('productlist')">
                 <inertia-link :href="$route('product.index')"
                   >Product List</inertia-link
                 >
               </li>
-              <li>
+              <li v-if="hasPermission('productadd')">
                 <inertia-link :href="$route('product.create')"
                   >Add New Product</inertia-link
                 >
               </li>
             </ul>
           </li>
-          <li>
+          <li v-if="hasAnyPermission(['rejectlist', 'rejectadd'])">
             <inertia-link
               href="#"
               class="has-arrow"
@@ -67,7 +68,7 @@
               </li>
             </ul>
           </li>
-          <li>
+          <li v-if="hasAnyPermission(['rejectlist', 'rejectadd'])">
             <inertia-link
               href="#"
               class="has-arrow"
@@ -77,19 +78,19 @@
               <span key="t-layouts">Reject</span>
             </inertia-link>
             <ul class="sub-menu" aria-expanded="false">
-              <li>
+              <li v-if="hasPermission('rejectadd')">
                 <inertia-link :href="$route('reject.create')">
                   Add New Reject Product</inertia-link
                 >
               </li>
-              <li>
+              <li v-if="hasPermission('rejectlist')">
                 <inertia-link :href="$route('reject.index')"
                   >Reject Product List</inertia-link
                 >
               </li>
             </ul>
           </li>
-          <li>
+          <li v-if="hasPermission('stock')">
             <inertia-link
               :href="$route('stock.index')"
               :class="activeMenuClassByArray(['stock.index'])"
@@ -97,6 +98,40 @@
               <i class="bx bx-home-circle"></i>
               <span key="t-dashboards">Stock</span>
             </inertia-link>
+          </li>
+          <li v-if="hasAnyPermission(['role', 'usercreate', 'userlist'])">
+            <inertia-link
+              href="#"
+              class="has-arrow"
+              :class="
+                activeMenuClassByArray([
+                  'role.index',
+                  'role.create',
+                  'user.index',
+                  'user.create',
+                ])
+              "
+            >
+              <i class="far fa-user"></i>
+              <span key="t-layouts">User</span>
+            </inertia-link>
+            <ul class="sub-menu" aria-expanded="false">
+              <li v-if="hasPermission('role')">
+                <inertia-link :href="$route('role.index')">
+                  User Role</inertia-link
+                >
+              </li>
+              <li>
+                <inertia-link :href="$route('user.create')">
+                  Create User</inertia-link
+                >
+              </li>
+              <li>
+                <inertia-link :href="$route('user.index')"
+                  >User List</inertia-link
+                >
+              </li>
+            </ul>
           </li>
           <!-- <li>
             <inertia-link

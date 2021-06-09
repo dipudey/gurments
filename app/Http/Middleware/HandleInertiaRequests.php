@@ -45,6 +45,9 @@ class HandleInertiaRequests extends Middleware
             'error' => function () use ($request) {
                 return $request->session()->get('error');
             },
+            'permission' => function () {
+                return auth()->user()->roleHasPermission->role->permission;
+            }
         ]);
     }
 }
