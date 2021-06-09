@@ -1,68 +1,111 @@
-@extends('layouts.app')
+<!doctype html>
+<html class="no-js" lang="">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Sebadebo | Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{!! asset('loginasset') !!}/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="{!! asset('loginasset') !!}/css/fontawesome-all.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="{!! asset('loginasset') !!}/font/flaticon.css">
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{!! asset('loginasset') !!}/style.css">
+</head>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+<body>
+   
+    <section class="fxt-template-animation fxt-template-layout11">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-6 col-lg-7 col-sm-12 col-12 fxt-bg-color">
+                    <div class="fxt-content">
+                        <div class="fxt-header">
+                            <a href="/" class="fxt-logo"><img src="https://www.akaarit.com/images/icons/logo.png" style="height: 70px !important" alt="Logo"></a>                        
+                            <p>Login into your account</p>
+						</div>
+						<div class="text-center">
+						
+							<div class="tab-content" id="pills-tabContent">
+								<div class="" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+									<div class="fxt-form"> 
+										<form action="{{ route('login') }}" method="POST">
+											@csrf
+											<div class="form-group"> 
+												<div class="fxt-transformY-50 fxt-transition-delay-1">                                              
+													<input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="User Name" required="required">
+												</div>
+												@error('email')
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+											<div class="form-group">  
+												<div class="fxt-transformY-50 fxt-transition-delay-2">                                              
+													<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="********" required="required" autocomplete="current-password">
+													<i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i>
+												</div>
+												@error('password')
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ $message }}</strong>
+													</span>
+												@enderror
+											</div>
+											<div class="form-group">
+												<div class="fxt-transformY-50 fxt-transition-delay-3">  
+													<div class="fxt-checkbox-area">
+														<div class="checkbox">
+															<input id="checkbox1" type="checkbox">
+															<label for="checkbox1">Keep me logged in</label>
+														</div>
+														{{-- <a href="forgot-password-11.html" class="switcher-text">Forgot Password</a> --}}
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="fxt-transformY-50 fxt-transition-delay-4">  
+													<button type="submit" class="fxt-btn-fill">Log in</button>
+												</div>
+											</div>
+										</form>                
+									</div> 
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+								</div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
+							
+						
+						</div>                            
+                        
+                        
+                    </div>
+                </div>                    
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    </section>    
+    <!-- jquery-->
+    <script src="{!! asset('loginasset') !!}/js/jquery-3.5.0.min.js"></script>
+    <!-- Popper js -->
+    <script src="{!! asset('loginasset') !!}/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="{!! asset('loginasset') !!}/js/bootstrap.min.js"></script>
+    <!-- Imagesloaded js -->
+    <script src="{!! asset('loginasset') !!}/js/imagesloaded.pkgd.min.js"></script>
+    <!-- Validator js -->
+    <script src="{!! asset('loginasset') !!}/js/validator.min.js"></script>
+    <!-- Custom Js -->
+    <script src="{!! asset('loginasset') !!}/js/main.js"></script>
+
+</body>
+
+</html>

@@ -58,7 +58,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
     <!-- App js -->
     <script src="/js/app.js"></script>
-    <script src="/assets/js/app.js?v=0.1"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 
 

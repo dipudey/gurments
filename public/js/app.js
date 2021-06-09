@@ -32442,7 +32442,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "col-md-4" }, [
         _c("div", { staticClass: "card mini-stats-wid" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "media" }, [
@@ -32462,7 +32462,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "col-md-4" }, [
         _c("div", { staticClass: "card mini-stats-wid" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "media" }, [
@@ -32482,7 +32482,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "col-md-4" }, [
         _c("div", { staticClass: "card mini-stats-wid" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "media" }, [
